@@ -1,0 +1,42 @@
+body {
+  font-family: Lato;
+  margin: 0;
+}
+
+#App-Title {
+  display: flex;
+  margin: 1vh 0vh 1vh 0vh;
+  font-size: 2.5rem;
+  justify-content: center;
+  height: 5vh;
+  align-content: center;
+}
+
+
+.Day-wrapper {
+  border: solid;
+  height: 20vh;
+  width: 13vw;
+}
+
+.Day-header {
+  display: flex;
+  justify-content: flex-end;
+  margin: .75vh;
+}
+
+#Month-wrapper {
+  border: thick double;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#Month-dayview {
+  display: flex;
+  width: 95vw;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
