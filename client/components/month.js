@@ -20,7 +20,7 @@ class Month extends Component {
     this.buildCalendar(today);
   }
 
-  buildCalendar = (date) => {
+  buildCalendar = date => {
     const newCalendar = new Array(28).fill('');
     const month = convertDate(date);
     this.setState({
@@ -34,32 +34,35 @@ class Month extends Component {
     const month = this.state.currentMonth;
     const newEvents = [];
     events.map(event => {
-      if (event.month === month){
+      if (event.month === month) {
         newEvents.push(event);
       }
     });
-    this.setState({events: newEvents});
-  }
+    this.setState({ events: newEvents });
+  };
 
   render() {
-    console.log('props on month: ', this.props);
-    console.log('state on month: ', this.state);
     const days = this.state.calendar;
     const events = this.state.events;
     return (
       <div id="Month-wrapper">
         <h1>Month view</h1>
         <div id="Month-dayview">
-          {days.length && events.length &&
+          {days.length &&
+            events.length &&
             days.map((day, idx) => {
               const todaysEvents = [];
               events.map(event => {
-                if (idx + 1 === event.monthDay){
+                if (idx + 1 === event.monthDay) {
                   todaysEvents.push(event);
                 }
               });
               return (
-                <Day dayIdx={idx + 1} events={todaysEvents}/>
+                <Day
+                  dayIdx={idx + 1}
+                  events={todaysEvents}
+                  month={this.state.currentMonth}
+                />
               );
             })}
         </div>
@@ -69,7 +72,9 @@ class Month extends Component {
 }
 
 const mapState = ({ Calendar }) => ({ Calendar });
-const mapDispatch = null
-;
+const mapDispatch = null;
 
-export default connect(mapState, mapDispatch)(Month);
+export default connect(
+  mapState,
+  mapDispatch
+)(Month);

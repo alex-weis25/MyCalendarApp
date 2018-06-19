@@ -6,8 +6,12 @@ import {
   Week,
   Day
 } from './components/index.js';
-import { fetchEvents } from './store/calendar';
+import { fetchEvents, setSelected } from './store/calendar';
+import PopUp from './components/popup.js';
+import { selectDay } from './helperFunctions';
 
+
+let showing = false;
 
 class App extends Component {
   constructor(props) {
@@ -15,8 +19,14 @@ class App extends Component {
     this.state = {
       calendar: '',
       events: [],
-      view: 'month'
+      view: 'month',
+      showPopUp: showing
     };
+    document.addEventListener('click', () => {
+      const selected = selectDay();
+      const setSelected = this.props.setSelected;
+      setSelected(selected);
+    });
   }
 
   componentDidMount = () => {
@@ -50,18 +60,20 @@ class App extends Component {
   }
 
   render() {
+    const popUpLive = this.state.showPopUp;
     return (
       <div id="App-main">
         <div id="App-Title">
           <div>Alex's Calendar</div>
         </div>
         <div>{this.selectComponents()}</div>
+        <div>{this.state.showPopUp ? <PopUp /> : ''}</div>
       </div>
     );
   }
 }
 
 const mapState = ({ Calendar }) => ({ Calendar });
-const mapDispatch = { fetchEvents };
+const mapDispatch = { fetchEvents, setSelected };
 
 export default connect(mapState, mapDispatch)(App);

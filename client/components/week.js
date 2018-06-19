@@ -18,14 +18,11 @@ class Week extends Component {
   }
 
   buildWeek = () => {
-    console.log('props on buildWeek', this.props);
     let newWeek = (new Array(7)).fill(<Day />);
-
     this.setState({ days: newWeek });
   }
 
   render() {
-    console.log('props on day: ', this.props);
     const week = this.state.days;
     return (
       <div className="Day-wrapper">
