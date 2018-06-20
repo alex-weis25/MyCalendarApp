@@ -11,17 +11,10 @@ class SecondaryHeader extends Component {
     const setView = this.props.setView;
     return (
       <div id="Seconadary-header">
-        <div className="secondary-header-wrapper">
-          <button className="header-btn" onClick={setView("month")}>
-            Month
-          </button>
-          <button className="header-btn" onClick={setView("week")}>
-            Week
-          </button>
-          <button className="header-btn" onClick={setView("day")}>
-            Day
-          </button>
-        </div>
+        <h5> Secondary Header </h5>
+        <button className='header-btn' onClick={() => {this.props.setView('month')}}> click </button>
+        <button className='header-btn' onClick={() => {this.props.setView('week')}}> click </button>
+        <button className='header-btn' onClick={() => {this.props.setView('day')}}> click </button>
       </div>
     );
   }
@@ -34,3 +27,18 @@ export default connect(
   mapState,
   mapDispatch
 )(SecondaryHeader);
+
+/*
+<div className="secondary-header-wrapper">
+          <button className="header-btn" onClick={setView("month")}>
+            Month
+          </button>
+          <button className="header-btn" onClick={setView("week")}>
+            Week
+          </button>
+          <button className="header-btn" onClick={setView("day")}>
+            Day
+          </button>
+        </div>
+
+*/

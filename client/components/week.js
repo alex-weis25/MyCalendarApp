@@ -1,66 +1,65 @@
-// import React, { Component } from 'react';
-// import axios from 'axios';
-// import { connect } from 'react-redux';
-// import { Day } from './index.js';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { Day, SecondaryHeader } from "./index.js";
+import { setWeek } from "../helperFunctions";
 
+class Week extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentWeek: 2,
+      days: []
+    };
+  }
 
-// class Week extends Component {
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       currentWeek: 1,
-//       days: []
-//     };
-//   }
+  componentDidMount() {
+    this.buildWeek();
+  }
 
-//   componentDidMount(){
-//     this.buildWeek();
-//   }
+  buildWeek = () => {
+    let newWeek = new Array(7).fill();
+    const selected = +this.props.Calendar.selected;
+    // const currentWeek = setWeek(selected);
+    // console.log('currentWeek', currentWeek);
+    this.setState({
+      days: newWeek
+      // currentWeek
+    });
+  };
 
-//   buildWeek = () => {
-//     let newWeek = (new Array(7)).fill(<Day />);
-//     this.setState({ days: newWeek });
-//   }
+  componentWillReceiveProps = props => {
+    // const selected = +this.props.Calendar.selected;
+    // const currentWeek = setWeek(selected);
+    // console.log('currentWeek WRP', currentWeek);
+    // this.setState({ currentWeek });
+  };
 
-//   componentWillReceiveProps = props => {
-//     const events = props.Calendar.events;
-//     const week = this.state.currentWeek;
-//     const selected = this.props.selected;
+  render() {
+    const week = this.state.days;
+    const weekIdx = this.state.currentWeek;
+    return (
+      <div className="Week-wrapper">
+        <div className="Week-top">
+          <div>Week View</div>
 
-//     const newEvents = [];
-//     events.map(event => {
-//       const weekSplit = {
-//         1:
-//       }
-//       if (event.month === month) {
-//         newEvents.push(event);
-//       }
-//     });
-//     this.setState({ events: newEvents });
-//   };
+        </div>
+        <div className="Week-bottom">
+          {week &&
+            week.map((day, idx) => {
+              let dayIdx = (weekIdx - 1) * 7 + idx + 1;
+              return <Day dayIdx={dayIdx} events={[]} month="June" />;
+            })}
+        </div>
+      </div>
+    );
+  }
+}
 
-//   render() {
-//     const week = this.state.days;
-//     return (
-//       <div className="Week-wrapper">
-//         {
-//           week && week.map(day => {
-//             return (
-//               <Day
-//                   dayIdx={idx + 1}
-//                   events={todaysEvents}
-//                   month={this.state.currentMonth}
-//                 />
-//             );
-//           })
-//         }
-//       </div>
-//     );
-//   }
-// }
+const mapState = ({ Calendar }) => ({ Calendar });
+const mapDispatch = null;
 
-
-// const mapState = ({ }) => ({ });
-// const mapDispatch = null;
-
-// export default connect(mapState, mapDispatch)(Week);
+export default connect(
+  mapState,
+  mapDispatch
+)(Week);

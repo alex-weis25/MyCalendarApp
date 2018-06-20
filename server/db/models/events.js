@@ -32,6 +32,10 @@ const Events = db.define('events', {
   },
   location: {
     type: Sequelize.STRING
+  },
+  week: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 });
 

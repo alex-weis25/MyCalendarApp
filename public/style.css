@@ -1,15 +1,17 @@
 body {
   font-family: Lato;
   margin: 0;
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 
 #App-Title {
   display: flex;
+  flex-direction: column;
   margin: 1vh 0vh 1vh 0vh;
   font-size: 2.5rem;
   justify-content: center;
-  height: 5vh;
+  align-items: center;
+  height: 15vh;
   align-content: center;
 }
 
@@ -24,7 +26,7 @@ body {
 .Day-header {
   display: flex;
   justify-content: flex-end;
-  margin: .75vh;
+  margin: 0.75vh;
   width: 90%;
   height: 10%;
 }
@@ -38,6 +40,20 @@ body {
 
 .Week-wrapper {
   display: flex;
+  flex-direction: column;
+  height: 50vh;
+}
+
+.Week-top {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 20vh;
+}
+
+.Week-bottom {
+  display: flex;
   flex-direction: row;
   height: 50vh;
 }
@@ -49,17 +65,17 @@ body {
 }
 
 .event-time {
-  margin-left: .5vw;
+  margin-left: 0.5vw;
   width: 30%;
   margin-right: 3px;
 }
 
 .event-detail {
-  width: 75%
+  width: 75%;
 }
 
 .selected {
-  background: rgb(207, 207, 204)
+  background: rgb(207, 207, 204);
 }
 
 #Month-wrapper {
@@ -87,7 +103,7 @@ body {
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: rgba(0,0,0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .popup_inner {
   position: absolute;
@@ -97,7 +113,7 @@ body {
   bottom: 25%;
   margin: auto;
   padding: 10px;
-  background:#FFF;
+  background: #fff;
   display: flex;
   flex-direction: column;
 }
@@ -105,7 +121,6 @@ body {
 .form-control {
   display: flex;
   flex-direction: column;
-
 }
 
 .Add-event-header {
@@ -119,12 +134,10 @@ body {
   margin-right: 10px;
 }
 
-
-
 .Edit-btn-wrapper {
   display: flex;
-    justify-content: center;
-    margin: 4px 0px 8px 0px;
+  justify-content: center;
+  margin: 4px 0px 8px 0px;
 }
 
 .edit-event-submit-btn {

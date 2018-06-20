@@ -106,3 +106,19 @@ export const sortEvents = array => {
   });
   return updatedOrder;
 };
+
+
+/* Set Week by selected */
+
+export const setWeek = val => {
+  if (!val) return 1;
+  if (val <= 7){
+    return 1;
+  } else if (val <= 14){
+    return 2;
+  } else if (val <= 21){
+    return 3;
+  } else {
+    return 4;
+  }
+};
