@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { newTimes, convertTime } from "../helperFunctions.js";
+import { newTimes, convertTime, setWeek } from "../helperFunctions.js";
 import { updateEvent } from "../store/calendar";
 
 class EditEvent extends Component {
@@ -28,11 +28,13 @@ class EditEvent extends Component {
     const month = this.props.month;
     const newStart = convertTime(month, monthDay, startTime);
     const newEnd = convertTime(month, monthDay, endTime);
+    const newWeek = setWeek(monthDay)
     const submitInfo = {
       eventName,
       description,
       month,
       monthDay,
+      week: newWeek,
       startTime: newStart,
       endTime: newEnd
     };

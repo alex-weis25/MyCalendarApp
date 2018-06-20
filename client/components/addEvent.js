@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { newTimes, convertTime } from "../helperFunctions.js";
-import { createEvent } from "../store/calendar.js";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { newTimes, convertTime, setWeek } from '../helperFunctions.js';
+import { createEvent } from '../store/calendar.js';
 
 class AddEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: "",
-      eventName: "",
-      description: "",
-      startTime: "",
-      endTime: ""
+      events: '',
+      eventName: '',
+      description: '',
+      startTime: '',
+      endTime: ''
     };
   }
 
@@ -23,11 +23,13 @@ class AddEvent extends Component {
     const monthDay = +this.props.Calendar.selected;
     const newStart = convertTime(month, monthDay, startTime);
     const newEnd = convertTime(month, monthDay, endTime);
+    const newWeek = setWeek(monthDay);
     const submitInfo = {
       eventName,
       description,
       month,
       monthDay,
+      week: newWeek,
       startTime: newStart,
       endTime: newEnd
     };

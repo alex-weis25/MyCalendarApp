@@ -1,23 +1,41 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 
-export const convertDate = date => {
-  const dateString = date.toString();
-  const months = {
-    Jan: 'January',
-    Feb: 'February',
-    Mar: 'March',
-    Apr: 'April',
-    May: 'May',
-    Jun: 'June',
-    Jul: 'July',
-    Aug: 'August',
-    Sep: 'September',
-    Oct: 'October',
-    Nov: 'November',
-    Dec: 'December'
-  };
-  return months[dateString.split(' ')[1]];
+// Helper's helpers
+const months = {
+  January: 0,
+  February: 1,
+  March: 2,
+  April: 3,
+  May: 4,
+  June: 5,
+  July: 6,
+  August: 7,
+  September: 8,
+  October: 9,
+  November: 10,
+  December: 11
+};
+
+const monthsReverse = {
+  0: 'January',
+  1: 'February',
+  2: 'March',
+  3: 'April',
+  4: 'May',
+  5: 'June',
+  6: 'July',
+  7: 'August',
+  8: 'September',
+  9: 'October',
+  10: 'November',
+  11: 'December'
+};
+
+export const convertDate = (month, val) => {
+  console.log('values in convert date', month, val)
+  const monthVal = (months[month] + val) % 12;
+  return monthsReverse[monthVal];
 };
 
 export const selectDay = () => {
@@ -71,21 +89,6 @@ export const newTimes = times.map((val, idx) => {
 
 /* convert time to sequelize value /* new Date(2018, 5, 1, 9, 30) */
 export const convertTime = (month, day, time) => {
-  const months = {
-    January: 0,
-    February: 1,
-    March: 2,
-    April: 3,
-    May: 4,
-    June: 5,
-    July: 6,
-    August: 7,
-    September: 8,
-    October: 9,
-    November: 10,
-    December: 11
-  };
-
   const monthDate = months[month];
   const submitDate = new Date(2018, monthDate, day, +time.split(':')[0], +time.split(':')[1]);
   return submitDate;

@@ -7,10 +7,8 @@ import {
   Day,
   SecondaryHeader
 } from './components/index.js';
-import { fetchEvents, setSelected } from './store/calendar';
+import { fetchEvents, setSelected, convertDate } from './store/calendar';
 import { selectDay } from './helperFunctions';
-
-const today = new Date();
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +43,7 @@ class App extends Component {
   selectComponents() {
     switch (this.state.view) {
       case 'month':
-        return <Month setView={this.setView} today={today} />;
+        return <Month setView={this.setView} />;
       case 'week':
         return (
           <Week setView={this.setView} />

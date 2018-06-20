@@ -10,20 +10,19 @@ class Month extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentMonth: 'June',
+      currentMonth: '',
       calendar: '',
       events: []
     };
   }
 
   componentDidMount() {
-    const today = this.props.today;
-    this.buildCalendar(today);
+    this.buildCalendar();
   }
 
   buildCalendar = () => {
     const newCalendar = new Array(28).fill('');
-    const month = this.state.currentMonth;
+    const month = this.props.Calendar.month;
     console.log('building month', this.state);
     this.setState({
       calendar: newCalendar,
@@ -34,22 +33,25 @@ class Month extends Component {
 
   componentWillReceiveProps = props => {
     const events = props.Calendar.events;
-    const today = this.props.today;
-    const month = this.state.currentMonth;
+    const month = props.Calendar.month;
     const newEvents = [];
     events.map(event => {
       if (event.month === month) {
         newEvents.push(event);
       }
     });
-    console.log('received props: ', this.state);
-    this.setState({ events: newEvents });
+    this.setState({
+      events: newEvents,
+      currentMonth: month
+    }, () => {
+      console.log('received props: ', this.state, this.props);
+    });
   };
 
   render() {
     const days = this.state.calendar;
     const events = this.state.events;
-    console.log('month mounting', this.state, days, events);
+    console.log('month mounting', this.state.currentMonth);
     return (
       <div id="Month-wrapper">
         <h1>Month view</h1>
@@ -59,7 +61,6 @@ class Month extends Component {
             days.map((day, idx) => {
               const todaysEvents = [];
               events.map(event => {
-                console.log('running map')
                 if (idx + 1 === event.monthDay) {
                   todaysEvents.push(event);
                 }
