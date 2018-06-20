@@ -9,7 +9,7 @@ class Week extends Component {
     super(props);
     this.state = {
       month: '',
-      currentWeek: 2,
+      currentWeek: '',
       days: [],
       events: []
     };
@@ -22,24 +22,33 @@ class Week extends Component {
   buildWeek = () => {
     let newWeek = new Array(7).fill();
     const selected = +this.props.Calendar.selected;
+    let week = setWeek(selected);
     const month = this.props.Calendar.month;
     this.setState({
       days: newWeek,
-      month
+      month,
+      currentWeek: week
     });
     this.componentWillReceiveProps(this.props);
   };
 
   componentWillReceiveProps = props => {
     const events = props.Calendar.events;
-    const week = this.state.currentWeek;
+    const selected = +props.Calendar.selected;
+    const month = props.Calendar.month;
+    const week = setWeek(selected);
     const newEvents = [];
     events.map(event => {
       if (event.week === week) {
         newEvents.push(event);
       }
     });
-    this.setState({ events: newEvents });
+    this.setState({
+      events: newEvents,
+      currentWeek: week,
+      month
+    });
+    console.log('state on week: ', this.state, events, week)
   };
 
   render() {

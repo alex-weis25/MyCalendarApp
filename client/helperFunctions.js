@@ -33,7 +33,7 @@ const monthsReverse = {
 };
 
 export const convertDate = (month, val) => {
-  console.log('values in convert date', month, val)
+  console.log('values in convert date', month, val);
   const monthVal = (months[month] + val) % 12;
   return monthsReverse[monthVal];
 };
@@ -112,8 +112,8 @@ export const sortEvents = array => {
 
 
 /* Set Week by selected */
-
 export const setWeek = val => {
+  console.log('values in setweek', val);
   if (!val) return 1;
   if (val <= 7){
     return 1;
@@ -124,4 +124,17 @@ export const setWeek = val => {
   } else {
     return 4;
   }
+};
+
+export const setDay = val => {
+  console.log('values in setDay', val);
+  let daySelected;
+  if (val < 0){
+    daySelected = 28 + val;
+  } else {
+    daySelected = Math.abs(val % 28);
+  }
+  let monthChange = Math.floor(val / 28);
+  console.log('monthchange and dayselected', monthChange, daySelected);
+  return [monthChange, daySelected];
 };

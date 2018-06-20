@@ -61,7 +61,7 @@ class App extends Component {
       <div id="App-main">
         <div id="App-Title">
           <div>Alex's Calendar</div>
-          <SecondaryHeader setView={this.setView} />
+          <SecondaryHeader setView={this.setView} view={this.state.view} />
         </div>
         {this.selectComponents()}
 
