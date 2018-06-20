@@ -33,11 +33,19 @@ body {
   display: flex;
   flex-direction: column;
   height: 75%;
+  overflow: auto;
+}
+
+.Week-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 50vh;
 }
 
 .event-wrapper {
   display: flex;
   margin: 2px 0px 2px 0px;
+  overflow: auto;
 }
 
 .event-time {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { EditEvent, AddEvent } from './index';
+import { EditEvent, AddEvent, DeleteEvent } from './index';
 
 class PopUp extends Component {
   constructor(props) {
@@ -18,7 +18,6 @@ class PopUp extends Component {
 
   loadEvents = () => {
     const events = this.props.events;
-    console.log('events: ', events);
     if (events.length) {
       this.setState({ events });
     }
@@ -30,13 +29,43 @@ class PopUp extends Component {
     this.setState({ type: name });
   };
 
+  selectComponents = () => {
+    switch (this.state.type) {
+      case 'add':
+        return (
+          <AddEvent
+            events={this.state.events}
+            month={this.props.month}
+            close={this.props.closePopUp}
+          />
+        );
+      case 'edit':
+        return (
+          <EditEvent
+            events={this.state.events}
+            month={this.props.month}
+            close={this.props.closePopUp}
+          />
+        );
+      case 'delete':
+        return (
+          <DeleteEvent
+            events={this.state.events}
+            month={this.props.month}
+            close={this.props.closePopUp}
+          />
+        );
+      default:
+        return '';
+    }
+  };
+
   render() {
     const type = this.state.type;
     return (
       <div className="popup">
         <div className="popup_inner">
-        <div className="Add-event-header">
-        My Scheduler</div>
+          <div className="Add-event-header">My Scheduler</div>
           <div className="btn-wrapper">
             <button className="Add-event-btn" onClick={this.onClick} name="add">
               Add new event
@@ -48,26 +77,14 @@ class PopUp extends Component {
             >
               Edit existing event
             </button>
-            <div>
-              {type === 'add' ? (
-                <AddEvent
-                  events={this.state.events}
-                  month={this.props.month}
-                  close={this.props.closePopUp}
-                />
-              ) : (
-                ''
-              )}
-              {type === 'edit' ? (
-                <EditEvent
-                  events={this.state.events}
-                  month={this.props.month}
-                  close={this.props.closePopUp}
-                />
-              ) : (
-              ''
-              )}
-            </div>
+            <button
+              className="Edit-event-btn"
+              onClick={this.onClick}
+              name="delete"
+            >
+              Delete existing event
+            </button>
+            <div>{this.selectComponents()}</div>
           </div>
         </div>
       </div>

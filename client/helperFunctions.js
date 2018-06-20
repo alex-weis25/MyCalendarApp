@@ -93,6 +93,7 @@ export const convertTime = (month, day, time) => {
 
 /* Sort events by time */
 export const sortEvents = array => {
+  if (!array) return [];
   if (!array.length) return [];
   const updatedOrder = [];
   array.forEach(event => {

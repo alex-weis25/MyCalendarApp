@@ -9,7 +9,7 @@ export const SingleEvent = props => {
       </div>
       <div className="event-detail">
         {props.event.eventName} <br />
-        {props.event.location} <br />
+        {props.event.description} <br />
       </div>
     </div>
   );

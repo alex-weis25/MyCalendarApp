@@ -38,6 +38,12 @@ router.put('/:id', (req, res, next) => {
   });
 });
 
-router.delete('/', (req, res, next) => {
-  console.log('hit the events delete route');
+router.delete('/:id', (req, res, next) => {
+  Events.destroy({ where: {
+    id: req.params.id
+  }})
+  .then(deleted => {
+    return Events.findAll();
+  })
+  .then(events => res.json(events));
 });

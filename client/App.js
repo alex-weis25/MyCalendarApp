@@ -4,14 +4,11 @@ import { connect } from 'react-redux';
 import {
   Month,
   Week,
-  Day
+  Day,
+  SecondaryHeader
 } from './components/index.js';
 import { fetchEvents, setSelected } from './store/calendar';
-import PopUp from './components/popup.js';
 import { selectDay } from './helperFunctions';
-
-
-let showing = false;
 
 class App extends Component {
   constructor(props) {
@@ -19,8 +16,7 @@ class App extends Component {
     this.state = {
       calendar: '',
       events: [],
-      view: 'month',
-      showPopUp: showing
+      view: 'month'
     };
     document.addEventListener('click', () => {
       const selected = selectDay();
@@ -60,14 +56,14 @@ class App extends Component {
   }
 
   render() {
-    const popUpLive = this.state.showPopUp;
+
     return (
       <div id="App-main">
         <div id="App-Title">
           <div>Alex's Calendar</div>
         </div>
-        <div>{this.selectComponents()}</div>
-        <div>{this.state.showPopUp ? <PopUp /> : ''}</div>
+        {this.selectComponents()}
+
       </div>
     );
   }

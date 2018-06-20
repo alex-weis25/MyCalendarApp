@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { newTimes, convertTime } from '../helperFunctions.js';
-import { updateEvent } from '../store/calendar';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { newTimes, convertTime } from "../helperFunctions.js";
+import { updateEvent } from "../store/calendar";
 
 class EditEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: '',
-      eventName: '',
-      description: '',
-      startTime: '',
-      endTime: ''
+      events: "",
+      eventName: "",
+      description: "",
+      startTime: "",
+      endTime: ""
     };
   }
 
@@ -21,7 +21,7 @@ class EditEvent extends Component {
     const { eventName, description, startTime, endTime } = this.state;
     const monthDay = +this.props.Calendar.selected;
     let id = this.props.events.filter(event => {
-      if (event.eventName === eventName){
+      if (event.eventName === eventName) {
         return event;
       }
     })[0].id;
@@ -52,7 +52,7 @@ class EditEvent extends Component {
     return (
       <div className="popup">
         <div className="popup_inner">
-          <h1>Edit Event</h1>
+          <div className="Add-event-header">Edit event</div>
           <form className="form-control" onSubmit={this.onSubmit}>
             <label>
               Event:
@@ -108,11 +108,16 @@ class EditEvent extends Component {
                   })}
               </select>
             </label>
-            <div>
-              <button id="edit-event-submit-btn">Submit</button>
-            </div>
+            <button className="edit-event-submit-btn">Submit</button>
           </form>
-          <button onClick={this.props.close}>Close</button>
+          <div className="close-btn-wrapper">
+            <button
+              className="edit-event-submit-btn"
+              onClick={this.props.close}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     );
