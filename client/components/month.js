@@ -23,7 +23,6 @@ class Month extends Component {
   buildCalendar = () => {
     const newCalendar = new Array(28).fill('');
     const month = this.props.Calendar.month;
-    console.log('building month', this.state);
     this.setState({
       calendar: newCalendar,
       currentMonth: month
@@ -43,19 +42,14 @@ class Month extends Component {
     this.setState({
       events: newEvents,
       currentMonth: month
-    }, () => {
-      console.log('received props: ', this.state, this.props);
     });
   };
 
   render() {
     const days = this.state.calendar;
     const events = this.state.events;
-    console.log('month mounting', this.state.currentMonth);
     return (
       <div id="Month-wrapper">
-        <h1>Month view</h1>
-
         <div id="Month-dayview">
           {days.length && //deleted events.length &&
             days.map((day, idx) => {

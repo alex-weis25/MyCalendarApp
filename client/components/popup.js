@@ -67,7 +67,7 @@ class PopUp extends Component {
         <div className="popup_inner">
           <div className="Add-event-header">My Scheduler</div>
           <div className="btn-wrapper">
-            <button className="Add-event-btn" onClick={this.onClick} name="add">
+            <button className="Edit-event-btn" onClick={this.onClick} name="add">
               Add new event
             </button>
             <button

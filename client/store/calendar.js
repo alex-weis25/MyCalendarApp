@@ -5,7 +5,7 @@ import axios from 'axios';
  */
 const initialState = {
   events: [],
-  selected: [],
+  selected: '',
   month: 'June',
   week: 1
 };

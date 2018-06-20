@@ -44,8 +44,8 @@ class Day extends Component {
         <div />
         <div className="Edit-btn-wrapper">
           {currentDay && currentDay === dayIdx ? (
-            <button className="edit-btn" onClick={this.togglePopUp}>
-              Edit events
+            <button className="Edit-btn" onClick={this.togglePopUp}>
+              Open Scheduler
             </button>
           ) : (
             ''

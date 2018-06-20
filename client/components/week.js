@@ -59,8 +59,6 @@ class Week extends Component {
     return (
       <div className="Week-wrapper">
         <div className="Week-top">
-          <div>Week View</div>
-
         </div>
         <div className="Week-bottom">
           {days.length &&

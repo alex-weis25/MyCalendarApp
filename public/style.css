@@ -4,11 +4,15 @@ body {
   font-size: 0.85rem;
 }
 
+#App-main {
+  height: 100vh;
+}
+
 #App-Title {
   display: flex;
   flex-direction: column;
-  margin: 1vh 0vh 1vh 0vh;
-  font-size: 2.5rem;
+  padding: 1vh 0vh 1.5vh 0vh;
+  font-size: 2rem;
   justify-content: center;
   align-items: center;
   height: 15vh;
@@ -42,6 +46,12 @@ body {
   display: flex;
   flex-direction: column;
   height: 50vh;
+}
+
+#Secondary-header {
+  height: 15vh;
+  width: 30vw;
+  margin-bottom: 1vh;
 }
 
 .Week-top {
@@ -94,6 +104,52 @@ body {
   justify-content: flex-start;
 }
 
+.Month-title {
+  font-size: 1.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.Change-date-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0px 5px 0px;
+}
+
+.Change-date-btn {
+  width: 75px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  background: #29a00b;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.Edit-btn {
+  width: 125px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  background: #29a00b;
+  border-radius: 10px;
+  font-size: .75rem;
+}
+
+.Header-btn {
+  height: 4vh;
+  width: 10vw;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: silver;
+}
+
+.SetView-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0px 5px 0px;
+}
+
 .popup {
   position: fixed;
   width: 100%;
@@ -116,6 +172,8 @@ body {
   background: #fff;
   display: flex;
   flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 5px 10px #29a00b;
 }
 
 .form-control {
@@ -138,6 +196,15 @@ body {
   display: flex;
   justify-content: center;
   margin: 4px 0px 8px 0px;
+}
+
+.Edit-event-btn {
+  width: 180px;
+  height: 5vh;
+  border-radius: 20px;
+  background: #29a00b;
+  font-size: 1rem;
+  color: #fff;
 }
 
 .edit-event-submit-btn {

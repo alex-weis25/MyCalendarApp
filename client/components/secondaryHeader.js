@@ -16,7 +16,6 @@ class SecondaryHeader extends Component {
     const selected = +this.props.Calendar.selected;
     const view = this.props.view;
     let newMonth;
-
     /* check for view then check for up or down, set redux */
     if (view === 'month') {
       if (value === 'down') {
@@ -51,7 +50,7 @@ class SecondaryHeader extends Component {
         <div className="Month-title">{this.props.Calendar.month}</div>
         <div className="SetView-wrapper">
           <button
-            className="header-btn"
+            className="Header-btn"
             onClick={() => {
               this.props.setView('month');
             }}
@@ -59,20 +58,12 @@ class SecondaryHeader extends Component {
             Month view
           </button>
           <button
-            className="header-btn"
+            className="Header-btn"
             onClick={() => {
               this.props.setView('week');
             }}
           >
             Week view
-          </button>
-          <button
-            className="header-btn"
-            onClick={() => {
-              this.props.setView('day');
-            }}
-          >
-            Day view
           </button>
         </div>
         <div className="Change-date-wrapper">

@@ -48,10 +48,6 @@ class App extends Component {
         return (
           <Week setView={this.setView} />
         );
-      case 'day':
-        return (
-          <Day />
-        );
     }
   }
 
