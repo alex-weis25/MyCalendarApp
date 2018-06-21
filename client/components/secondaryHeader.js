@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changeWeek, changeMonth } from '../helperFunctions';
 import { setMonth, setSelected } from '../store/calendar';
+import { DaysOfWeek } from './index';
 
 class SecondaryHeader extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class SecondaryHeader extends Component {
     } else if (view === 'week') {
       let newWeek = changeWeek(selected, month, value);
       if (newWeek[0] !== 0) this.props.setMonth(newWeek[0]);
-      console.log('changeWeek', newWeek)
+      console.log('changeWeek', newWeek);
       this.props.setSelected(newWeek[1]);
     }
   };
@@ -31,43 +32,48 @@ class SecondaryHeader extends Component {
   render() {
     return (
       <div id="Seconadary-header">
-        <div className="Month-title">{this.props.Calendar.month}</div>
-        <div className="SetView-wrapper">
-          <button
-            className="Header-btn"
-            onClick={() => {
-              this.props.setView('month');
-            }}
-          >
-            Month view
-          </button>
-          <button
-            className="Header-btn"
-            onClick={() => {
-              this.props.setView('week');
-            }}
-          >
-            Week view
-          </button>
+        <div id="Secondary-header-top">
+          <div id="Month-title">{this.props.Calendar.month}</div>
+          <div id="Secondary-header-top-btn-wrapper">
+            <div className="SetView-wrapper">
+              <button
+                className="Header-btn"
+                onClick={() => {
+                  this.props.setView('month');
+                }}
+              >
+                Month view
+              </button>
+              <button
+                className="Header-btn"
+                onClick={() => {
+                  this.props.setView('week');
+                }}
+              >
+                Week view
+              </button>
+            </div>
+            <div className="Change-date-wrapper">
+              <button
+                className="Change-date-btn"
+                value="down"
+                onClick={this.changeDate}
+              >
+                {' '}
+                -{' '}
+              </button>
+              <button
+                className="Change-date-btn"
+                value="up"
+                onClick={this.changeDate}
+              >
+                {' '}
+                +{' '}
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="Change-date-wrapper">
-          <button
-            className="Change-date-btn"
-            value="down"
-            onClick={this.changeDate}
-          >
-            {' '}
-            -{' '}
-          </button>
-          <button
-            className="Change-date-btn"
-            value="up"
-            onClick={this.changeDate}
-          >
-            {' '}
-            +{' '}
-          </button>
-        </div>
+        <DaysOfWeek />
       </div>
     );
   }

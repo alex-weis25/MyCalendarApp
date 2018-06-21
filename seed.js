@@ -28,8 +28,8 @@ const eventArray = [
     month: 'June',
     monthDay: 10,
     week: 2,
-    startTime: new Date(2018, 5, 4, 9, 30),
-    endTime: new Date(2018, 5, 14, 11, 30),
+    startTime: new Date(2018, 5, 10, 9, 30),
+    endTime: new Date(2018, 5, 10, 11, 30),
     location: '11 E 17th Street'
   },
   {

@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import {
   Month,
   Week,
-  Day,
   SecondaryHeader
 } from './components/index.js';
-import { fetchEvents, setSelected, convertDate } from './store/calendar';
+import { fetchEvents, setSelected } from './store/calendar';
 import { selectDay } from './helperFunctions';
 
 class App extends Component {
@@ -56,7 +55,6 @@ class App extends Component {
     return (
       <div id="App-main">
         <div id="App-Title">
-          <div>Alex's Calendar</div>
           <SecondaryHeader setView={this.setView} view={this.state.view} />
         </div>
         {this.selectComponents()}

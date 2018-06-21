@@ -59,8 +59,6 @@ class Week extends Component {
     const month = this.state.month;
     return (
       <div className="Week-wrapper">
-        <div className="Week-top">
-        </div>
         <div className="Week-bottom">
           {days.length &&
             days.map((day, idx) => {

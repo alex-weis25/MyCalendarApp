@@ -7,3 +7,4 @@ export { default as AddEvent } from './addEvent';
 export { default as EditEvent } from './editEvent';
 export { default as DeleteEvent } from './deleteEvent';
 export { default as SecondaryHeader } from './SecondaryHeader';
+export { default as DaysOfWeek } from './daysOfWeek';

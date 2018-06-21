@@ -32,7 +32,7 @@ const monthsReverse = {
   11: 'December'
 };
 
-/* converts date to send to redux start */
+/* converts date to send to redux state */
 export const convertDate = (month, val) => {
   let monthVal = (months[month] + val) % 12;
   if (monthVal < 0) monthVal += 12;
@@ -88,27 +88,39 @@ export const newTimes = times.map((val, idx) => {
   return time;
 });
 
-
 /* convert time to sequelize value /* new Date(2018, 5, 1, 9, 30) */
 export const convertTime = (month, day, time) => {
   const monthDate = months[month];
-  const submitDate = new Date(2018, monthDate, day, +time.split(':')[0], +time.split(':')[1]);
+  const submitDate = new Date(
+    2018,
+    monthDate,
+    day,
+    +time.split(':')[0],
+    +time.split(':')[1]
+  );
   return submitDate;
 };
 
 /* Sort events by time */
 export const sortEvents = array => {
-  if (!array) return [];
-  if (!array.length) return [];
-  const updatedOrder = [];
-  array.forEach(event => {
-    for (var i = 0; i < array.length; i++) {
-      if (!updatedOrder[i] || event.startTime <= updatedOrder[i].startTime) {
-        updatedOrder.splice(i, 0, event);
-        break;
+  let updatedOrder = [];
+  if (!array) {
+    return [];
+  } else if (!array.length) {
+    return [];
+  } else {
+    array.forEach(event => {
+      for (var i = 0; i < array.length; i++) {
+        console.log('in loop: ', i, event, updatedOrder[i]);
+        if (!updatedOrder[i] || event.startTime <= updatedOrder[i].startTime) {
+          // console.log('switching order')
+          updatedOrder.splice(i, 0, event);
+          break;
+        }
       }
-    }
-  });
+    });
+  }
+  console.log('UPDATED ORDER: ', updatedOrder);
   return updatedOrder;
 };
 
@@ -139,15 +151,15 @@ export const setDay = (val, change) => {
     daySelected = Math.abs(newDate % 28);
   }
   /* Don't change month on 28 */
-  if (newDate === 28 && change > 0){
+  if (newDate === 28 && change > 0) {
     monthChange = 0;
-  } else if (newDate <= 0){
+  } else if (newDate <= 0) {
     newDate -= 28;
     monthChange = Math.floor(newDate / 28);
   } else {
     monthChange = Math.floor(newDate / 28);
   }
-  console.log('exit values', monthChange, daySelected)
+  console.log('exit values', monthChange, daySelected);
   return [monthChange, daySelected];
 };
 
