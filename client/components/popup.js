@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { EditEvent, AddEvent, DeleteEvent } from './index';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { EditEvent, AddEvent, DeleteEvent } from "./index";
 
 class PopUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: '',
-      type: ''
+      events: "",
+      type: ""
     };
   }
 
@@ -31,7 +31,7 @@ class PopUp extends Component {
 
   selectComponents = () => {
     switch (this.state.type) {
-      case 'add':
+      case "add":
         return (
           <AddEvent
             events={this.state.events}
@@ -39,7 +39,7 @@ class PopUp extends Component {
             close={this.props.closePopUp}
           />
         );
-      case 'edit':
+      case "edit":
         return (
           <EditEvent
             events={this.state.events}
@@ -47,7 +47,7 @@ class PopUp extends Component {
             close={this.props.closePopUp}
           />
         );
-      case 'delete':
+      case "delete":
         return (
           <DeleteEvent
             events={this.state.events}
@@ -56,7 +56,7 @@ class PopUp extends Component {
           />
         );
       default:
-        return '';
+        return "";
     }
   };
 
@@ -67,7 +67,11 @@ class PopUp extends Component {
         <div className="popup_inner">
           <div className="Add-event-header">My Scheduler</div>
           <div className="btn-wrapper">
-            <button className="Edit-event-btn" onClick={this.onClick} name="add">
+            <button
+              className="Edit-event-btn"
+              onClick={this.onClick}
+              name="add"
+            >
               Add new event
             </button>
             <button
@@ -85,6 +89,14 @@ class PopUp extends Component {
               Delete existing event
             </button>
             <div>{this.selectComponents()}</div>
+          </div>
+          <div className="close-btn-wrapper">
+            <button
+              className="edit-event-submit-btn"
+              onClick={this.props.closePopUp}
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ export const convertDate = (month, val) => {
 export const selectDay = () => {
   const lastClicked = document.getElementsByClassName('selected')[0];
   /* remove previous highlight */
-  if (lastClicked){
+  if (lastClicked) {
     lastClicked.classList.remove('selected');
   }
 
@@ -49,7 +49,7 @@ export const selectDay = () => {
   const today = window.event.toElement;
   let innerHTML;
   const divs = today.getElementsByTagName('div');
-  if (divs[0] && divs[0].className === 'Day-header'){
+  if (divs[0] && divs[0].className === 'Day-header') {
     today.classList.add('selected');
     innerHTML = divs[1].innerHTML;
     return innerHTML;
@@ -58,10 +58,11 @@ export const selectDay = () => {
     let parent = today.parentNode;
     let parentDivs = parent.getElementsByTagName('div');
     if (parent) {
-      while (parentDivs[0].className !== 'Day-header'){
-      parent = parent.parentNode;
-      parentDivs = parent.getElementsByTagName('div');
-    }} else {
+      while (parentDivs[0].className !== 'Day-header') {
+        parent = parent.parentNode;
+        parentDivs = parent.getElementsByTagName('div');
+      }
+    } else {
       return '';
     }
     /* if 'Day-header found, return */
@@ -113,11 +114,11 @@ export const sortEvents = array => {
 /* Set Week by selected */
 export const setWeek = val => {
   if (!val) return 1;
-  if (val <= 7){
+  if (val <= 7) {
     return 1;
-  } else if (val <= 14){
+  } else if (val <= 14) {
     return 2;
-  } else if (val <= 21){
+  } else if (val <= 21) {
     return 3;
   } else {
     return 4;
@@ -127,11 +128,38 @@ export const setWeek = val => {
 /* increments days in week view, checks for month change */
 export const setDay = val => {
   let daySelected;
-  if (val < 0){
+  if (val < 0) {
     daySelected = 28 + val;
   } else {
     daySelected = Math.abs(val % 28);
   }
   let monthChange = Math.floor(val / 28);
   return [monthChange, daySelected];
+};
+
+export const changeMonth = (month, direction) => {
+  let newMonth;
+  if (direction === 'down') {
+    newMonth = convertDate(month, -1);
+  } else {
+    newMonth = convertDate(month, 1);
+  }
+  return newMonth;
+};
+
+export const changeWeek = (day, month, direction) => {
+  let newMonth = month;
+  let newDay;
+  if (direction === 'down') {
+    newDay = setDay(day - 7);
+    if (newDay[0] !== 0) {
+      newMonth = convertDate(month, newDay[0]);
+    }
+  } else {
+    newDay = setDay(day + 7);
+    if (newDay[0] !== 0) {
+      newMonth = convertDate(month, newDay[0]);
+    }
+  }
+  return [newMonth, newDay];
 };

@@ -27,6 +27,7 @@ class Day extends Component {
     let events = sortEvents(this.props.events);
     const dayIdx = this.props.dayIdx;
     const currentDay = +this.props.Calendar.selected;
+    console.log('events on day: ', this.props.events);
     return (
       <div className="Day-wrapper">
         <div className="Day-header">

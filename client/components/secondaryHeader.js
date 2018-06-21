@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { convertDate, setWeek, setDay } from '../helperFunctions';
+import { changeWeek, changeMonth } from '../helperFunctions';
 import { setMonth, setSelected } from '../store/calendar';
 
 class SecondaryHeader extends Component {
@@ -18,29 +18,13 @@ class SecondaryHeader extends Component {
     let newMonth;
     /* check for view then check for up or down, set redux */
     if (view === 'month') {
-      if (value === 'down') {
-        newMonth = convertDate(month, -1);
-      } else {
-        newMonth = convertDate(month, 1);
-      }
+      newMonth = changeMonth(month, value);
       this.props.setMonth(newMonth);
     } else if (view === 'week') {
-      if (value === 'down') {
-        const newDay = setDay(selected - 7);
-        this.props.setSelected(newDay[1]);
-        console.log('newDay[0]', newDay[0]);
-        if (newDay[0] !== 0) {
-          newMonth = convertDate(month, newDay[0]);
-          this.props.setMonth(newMonth);
-        }
-      } else {
-        const newDay = setDay(selected + 7);
-        this.props.setSelected(newDay[1]);
-        if (newDay[0] !== 0) {
-          newMonth = convertDate(month, newDay[0]);
-          this.props.setMonth(newMonth);
-        }
-      }
+      let newWeek = changeWeek(selected, month, value);
+      if (newWeek[0] !== 0) this.props.setMonth(newWeek[0]);
+      console.log('changeWeek', newWeek)
+      this.props.setSelected(newWeek[1]);
     }
   };
 
