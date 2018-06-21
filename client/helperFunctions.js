@@ -111,7 +111,6 @@ export const sortEvents = array => {
   } else {
     array.forEach(event => {
       for (var i = 0; i < array.length; i++) {
-        console.log('in loop: ', i, event, updatedOrder[i]);
         if (!updatedOrder[i] || event.startTime <= updatedOrder[i].startTime) {
           // console.log('switching order')
           updatedOrder.splice(i, 0, event);
@@ -120,7 +119,6 @@ export const sortEvents = array => {
       }
     });
   }
-  console.log('UPDATED ORDER: ', updatedOrder);
   return updatedOrder;
 };
 
@@ -137,6 +135,26 @@ export const setWeek = val => {
     return 4;
   }
 };
+
+/* Form varification */
+
+export const verifyInputs = (name, start, end) => {
+  if (!start || !end || start === 'Select Start' || end === 'selectTime' || !name || name === ' '){
+    console.log('hit false line');
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export const checkTimes = (start, end) => {
+  if (end <= start){
+    return false;
+  } else {
+    return true;
+  }
+};
+
 
 /* increments days in week view, checks for month change */
 export const setDay = (val, change) => {

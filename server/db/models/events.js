@@ -11,8 +11,7 @@ const Events = db.define('events', {
     }
   },
   description: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.TEXT
   },
   month: {
     type: Sequelize.ENUM('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
@@ -29,9 +28,6 @@ const Events = db.define('events', {
   endTime: {
     type: Sequelize.DATE,
     allowNull: false
-  },
-  location: {
-    type: Sequelize.STRING
   },
   week: {
     type: Sequelize.INTEGER,

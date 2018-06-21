@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { PopUp } from './index.js';
 import { SingleEvent } from './SingleEvent';
@@ -21,13 +20,10 @@ class Day extends Component {
     });
   };
 
-  componentWillReceiveProps = props => {};
-
   render() {
     let events = sortEvents(this.props.events);
     const dayIdx = this.props.dayIdx;
     const currentDay = +this.props.Calendar.selected;
-    console.log('events on day: ', events);
     return (
       <div className="Day-wrapper">
         <div className="Day-header">

@@ -1,18 +1,25 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { newTimes, convertTime, setWeek } from "../helperFunctions.js";
-import { updateEvent } from "../store/calendar";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  newTimes,
+  convertTime,
+  setWeek,
+  checkTimes,
+  verifyInputs
+} from '../helperFunctions.js';
+import { updateEvent } from '../store/calendar';
 
 class EditEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: "",
-      eventName: "",
-      description: "",
-      startTime: "",
-      endTime: ""
+      events: '',
+      eventName: '',
+      description: '',
+      startTime: '',
+      endTime: '',
+      verified: true,
+      correctTimes: true
     };
   }
 
@@ -20,15 +27,15 @@ class EditEvent extends Component {
     event.preventDefault();
     const { eventName, description, startTime, endTime } = this.state;
     const monthDay = +this.props.Calendar.selected;
-    let id = this.props.events.filter(event => {
-      if (event.eventName === eventName) {
-        return event;
-      }
-    })[0].id;
+    const updateEvent = this.props.updateEvent;
+
     const month = this.props.month;
+    /* verification and conversions */
     const newStart = convertTime(month, monthDay, startTime);
     const newEnd = convertTime(month, monthDay, endTime);
-    const newWeek = setWeek(monthDay)
+    const newWeek = setWeek(monthDay);
+    const verified = verifyInputs(eventName, startTime, endTime);
+    const correctTimes = checkTimes(newStart, newEnd);
     const submitInfo = {
       eventName,
       description,
@@ -38,9 +45,17 @@ class EditEvent extends Component {
       startTime: newStart,
       endTime: newEnd
     };
-    const updateEvent = this.props.updateEvent;
-    updateEvent(id, submitInfo);
-    this.props.close();
+    this.setState({ verified, correctTimes }, () => {
+      if (this.state.verified && this.state.correctTimes) {
+        let id = this.props.events.filter(event => {
+          if (event.eventName === eventName) {
+            return event;
+          }
+        })[0].id;
+        updateEvent(id, submitInfo);
+        this.props.close();
+      }
+    });
   };
 
   handleChange = event => {
@@ -113,6 +128,20 @@ class EditEvent extends Component {
             <button className="edit-event-submit-btn">Submit</button>
           </form>
           <div className="close-btn-wrapper">
+            {!this.state.verified ? (
+              <div id="Submission-error">
+                You must enter a name, start and end time
+              </div>
+            ) : (
+              ''
+            )}
+            {this.state.verified && !this.state.correctTimes ? (
+              <div id="Submission-error">
+                Your end time must be after your start time
+              </div>
+            ) : (
+              ''
+            )}
             <button
               className="edit-event-submit-btn"
               onClick={this.props.close}

@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { newTimes, convertTime, setWeek } from '../helperFunctions.js';
+import {
+  newTimes,
+  convertTime,
+  setWeek,
+  checkTimes,
+  verifyInputs
+} from '../helperFunctions.js';
 import { createEvent } from '../store/calendar.js';
 
 class AddEvent extends Component {
@@ -12,7 +18,9 @@ class AddEvent extends Component {
       eventName: '',
       description: '',
       startTime: '',
-      endTime: ''
+      endTime: '',
+      verified: true,
+      correctTimes: true
     };
   }
 
@@ -20,10 +28,14 @@ class AddEvent extends Component {
     event.preventDefault();
     const { eventName, description, startTime, endTime } = this.state;
     const month = this.props.month;
+    const createEvent = this.props.createEvent;
     const monthDay = +this.props.Calendar.selected;
+    /* verification and conversions */
     const newStart = convertTime(month, monthDay, startTime);
     const newEnd = convertTime(month, monthDay, endTime);
     const newWeek = setWeek(monthDay);
+    const verified = verifyInputs(eventName, startTime, endTime);
+    const correctTimes = checkTimes(newStart, newEnd);
     const submitInfo = {
       eventName,
       description,
@@ -33,9 +45,12 @@ class AddEvent extends Component {
       startTime: newStart,
       endTime: newEnd
     };
-    const createEvent = this.props.createEvent;
-    createEvent(submitInfo);
-    this.props.close();
+    this.setState({ verified, correctTimes }, () => {
+      if (this.state.verified && this.state.correctTimes) {
+        createEvent(submitInfo);
+        this.props.close();
+      }
+    });
   };
 
   handleChange = event => {
@@ -97,6 +112,20 @@ class AddEvent extends Component {
             <button className="edit-event-submit-btn">Submit</button>
           </form>
           <div className="close-btn-wrapper">
+            {!this.state.verified ? (
+              <div id="Submission-error">
+                You must enter a name, start and end time
+              </div>
+            ) : (
+              ''
+            )}
+            {this.state.verified && !this.state.correctTimes ? (
+              <div id="Submission-error">
+                Your end time must be after your start time
+              </div>
+            ) : (
+              ''
+            )}
             <button
               className="edit-event-submit-btn"
               onClick={this.props.close}

@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { EditEvent, AddEvent, DeleteEvent } from "./index";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { EditEvent, AddEvent, DeleteEvent } from './index';
 
 class PopUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: "",
-      type: ""
+      events: ''
     };
   }
 
@@ -31,7 +30,7 @@ class PopUp extends Component {
 
   selectComponents = () => {
     switch (this.state.type) {
-      case "add":
+      case 'add':
         return (
           <AddEvent
             events={this.state.events}
@@ -39,7 +38,7 @@ class PopUp extends Component {
             close={this.props.closePopUp}
           />
         );
-      case "edit":
+      case 'edit':
         return (
           <EditEvent
             events={this.state.events}
@@ -47,7 +46,7 @@ class PopUp extends Component {
             close={this.props.closePopUp}
           />
         );
-      case "delete":
+      case 'delete':
         return (
           <DeleteEvent
             events={this.state.events}
@@ -56,12 +55,12 @@ class PopUp extends Component {
           />
         );
       default:
-        return "";
+        return '';
     }
   };
 
   render() {
-    const type = this.state.type;
+    const length = this.props.events.length;
     return (
       <div className="popup">
         <div className="popup_inner">
@@ -74,22 +73,30 @@ class PopUp extends Component {
             >
               Add new event
             </button>
-            <button
-              className="Edit-event-btn"
-              onClick={this.onClick}
-              name="edit"
-            >
-              Edit existing event
-            </button>
-            <button
-              className="Edit-event-btn"
-              onClick={this.onClick}
-              name="delete"
-            >
-              Delete existing event
-            </button>
-            <div>{this.selectComponents()}</div>
+            {length ? (
+              <button
+                className="Edit-event-btn"
+                onClick={this.onClick}
+                name="edit"
+              >
+                Edit existing event
+              </button>
+            ) : (
+              ''
+            )}
+            {length ? (
+              <button
+                className="Edit-event-btn"
+                onClick={this.onClick}
+                name="delete"
+              >
+                Delete existing event
+              </button>
+            ) : (
+              ''
+            )}
           </div>
+          <div>{this.selectComponents()}</div>
           <div className="close-btn-wrapper">
             <button
               className="edit-event-submit-btn"

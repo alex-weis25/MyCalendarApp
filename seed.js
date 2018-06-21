@@ -8,9 +8,8 @@ const eventArray = [
     month: 'June',
     monthDay: 4,
     week: 1,
-    startTime: new Date(2018, 5, 1, 9, 30),
-    endTime: new Date(2018, 5, 1, 11, 30),
-    location: 'Starbucks'
+    startTime: new Date(2018, 5, 4, 9, 30),
+    endTime: new Date(2018, 5, 4, 11, 30)
   },
   {
     eventName: 'Coffee',
@@ -18,59 +17,80 @@ const eventArray = [
     month: 'June',
     monthDay: 7,
     week: 1,
-    startTime: new Date(2018, 5, 2, 7, 30),
-    endTime: new Date(2018, 5, 2, 8, 30),
-    location: '11 E 17th Street'
+    startTime: new Date(2018, 5, 7, 9, 30),
+    endTime: new Date(2018, 5, 7, 10, 30)
   },
   {
-    eventName: 'Coffee',
-    description: 'Book discussion',
+    eventName: 'Cycling class',
+    description: 'Equinox',
     month: 'June',
-    monthDay: 10,
+    monthDay: 14,
     week: 2,
-    startTime: new Date(2018, 5, 10, 9, 30),
-    endTime: new Date(2018, 5, 10, 11, 30),
-    location: '11 E 17th Street'
+    startTime: new Date(2018, 5, 14, 9, 30),
+    endTime: new Date(2018, 5, 14, 11, 30)
   },
   {
-    eventName: 'Coffee',
-    description: 'Book discussion',
+    eventName: 'Dry Cleaning',
+    description: null,
+    month: 'June',
+    monthDay: 16,
+    week: 3,
+    startTime: new Date(2018, 5, 16, 10, 30),
+    endTime: new Date(2018, 5, 16, 11, 30)
+  },
+  {
+    eventName: 'Dinner',
+    description: 'Parents in town',
+    month: 'June',
+    monthDay: 20,
+    week: 3,
+    startTime: new Date(2018, 5, 20, 18, 30),
+    endTime: new Date(2018, 5, 20, 20, 30)
+  },
+  {
+    eventName: 'Fourth of July',
+    description: 'Fireworks east side',
     month: 'July',
-    monthDay: 12,
-    week: 2,
-    startTime: new Date(2018, 6, 10, 9, 30),
-    endTime: new Date(2018, 6, 10, 11, 30),
-    location: '11 E 17th Street'
+    monthDay: 4,
+    week: 1,
+    startTime: new Date(2018, 6, 1, 18, 30),
+    endTime: new Date(2018, 6, 1, 20, 30)
   },
   {
-    eventName: 'Coffee',
-    description: 'Book discussion',
-    month: 'June',
+    eventName: 'Flight to Chicago',
+    description: '',
+    month: 'July',
     monthDay: 18,
     week: 3,
-    startTime: new Date(2018, 5, 11, 9, 30),
-    endTime: new Date(2018, 5, 11, 11, 30),
-    location: '11 E 17th Street'
+    startTime: new Date(2018, 6, 18, 12, 30),
+    endTime: new Date(2018, 6, 18, 14, 30)
   },
   {
-    eventName: 'Coffee',
-    description: 'Book discussion',
-    month: 'June',
-    monthDay: 18,
-    week: 3,
-    startTime: new Date(2018, 5, 18, 9, 30),
-    endTime: new Date(2018, 5, 18, 11, 30),
-    location: '11 E 17th Street'
-  },
-  {
-    eventName: 'Coffee',
-    description: 'Book discussion',
-    month: 'June',
-    monthDay: 24,
+    eventName: 'Alex Birthday',
+    description: '28 years old',
+    month: 'August',
+    monthDay: 25,
     week: 4,
-    startTime: new Date(2018, 5, 21, 9, 30),
-    endTime: new Date(2018, 5, 21, 11, 30),
-    location: '11 E 17th Street'
+    startTime: new Date(2018, 7, 25, 8, 30),
+    endTime: new Date(2018, 7, 25, 20, 30)
+  },
+  {
+    eventName: 'Halloween',
+    description: 'Buy costume',
+    month: 'October',
+    monthDay: 28,
+    week: 4,
+    startTime: new Date(2018, 9, 28, 9, 30),
+    endTime: new Date(2018, 9, 28, 11, 30)
+  },
+  {
+    eventName: 'Thanksgiving Day',
+    description: 'Chicago',
+    month: 'November',
+    monthDay: 25,
+    week: 4,
+    startTime: new Date(2018, 10, 25, 9, 30),
+    endTime: new Date(2018, 10, 25, 11, 30)
   },
 ];
 
