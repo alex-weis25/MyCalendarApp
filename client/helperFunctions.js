@@ -34,7 +34,8 @@ const monthsReverse = {
 
 /* converts date to send to redux start */
 export const convertDate = (month, val) => {
-  const monthVal = (months[month] + val) % 12;
+  let monthVal = (months[month] + val) % 12;
+  if (monthVal < 0) monthVal += 12;
   return monthsReverse[monthVal];
 };
 
@@ -126,14 +127,27 @@ export const setWeek = val => {
 };
 
 /* increments days in week view, checks for month change */
-export const setDay = val => {
+export const setDay = (val, change) => {
+  let newDate = val + change;
   let daySelected;
-  if (val < 0) {
+  let monthChange;
+  if (newDate < 0) {
     daySelected = 28 + val;
+  } else if (newDate === 0 || newDate === 28) {
+    daySelected = 28;
   } else {
-    daySelected = Math.abs(val % 28);
+    daySelected = Math.abs(newDate % 28);
   }
-  let monthChange = Math.floor(val / 28);
+  /* Don't change month on 28 */
+  if (newDate === 28 && change > 0){
+    monthChange = 0;
+  } else if (newDate <= 0){
+    newDate -= 28;
+    monthChange = Math.floor(newDate / 28);
+  } else {
+    monthChange = Math.floor(newDate / 28);
+  }
+  console.log('exit values', monthChange, daySelected)
   return [monthChange, daySelected];
 };
 
@@ -151,15 +165,15 @@ export const changeWeek = (day, month, direction) => {
   let newMonth = month;
   let newDay;
   if (direction === 'down') {
-    newDay = setDay(day - 7);
+    newDay = setDay(day, -7);
     if (newDay[0] !== 0) {
       newMonth = convertDate(month, newDay[0]);
     }
   } else {
-    newDay = setDay(day + 7);
+    newDay = setDay(day, 7);
     if (newDay[0] !== 0) {
       newMonth = convertDate(month, newDay[0]);
     }
   }
-  return [newMonth, newDay];
+  return [newMonth, newDay[1]];
 };
