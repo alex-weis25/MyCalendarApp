@@ -1,5 +1,4 @@
 'use strict';
-
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
@@ -7,7 +6,6 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const PORT = 8000;
 const db = require('./db/models').db;
-const socketio = require('socket.io');
 const app = express();
 
 const createApp = () => {
@@ -49,37 +47,6 @@ const createApp = () => {
 
 const startListening = () => {
   const server = app.listen(PORT, () => console.log(`Mic check at ${PORT}`));
-
-  // const io = socketio(server);
-  // io.on('connection', (socket) => {
-  //   console.log(`${socket.id} has joined the party!`);
-
-  //   socket.on('addSong', () => {
-  //     console.log('addSong server socket');
-  //     socket.broadcast.emit('newQueue');
-  //   });
-
-  //   socket.on('redirect', () => {
-  //     console.log('redirect server socket');
-  //     socket.emit('newQueue');
-  //   });
-
-  //   socket.on('voted', () => {
-  //     console.log('in voted server socket');
-  //     socket.emit('newQueue');
-  //     socket.broadcast.emit('newQueue');
-  //   });
-
-  //   socket.on('newVotify', () => {
-  //     console.log('in voted server socket');
-  //     socket.emit('addVotify');
-  //     socket.broadcast.emit('addVotify');
-  //   });
-
-  //   socket.on('disconnect', connection => {
-  //     console.log(`Hate to see you leave ${connection.id}`);
-  //   });
-  // });
 };
 
 

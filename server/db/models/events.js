@@ -21,6 +21,10 @@ const Events = db.define('events', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  endDay: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
   startTime: {
     type: Sequelize.DATE,
     allowNull: false

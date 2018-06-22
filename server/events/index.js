@@ -14,37 +14,45 @@ router.get('/months/:month', (req, res, next) => {
 });
 
 router.get('/all', (req, res, next) => {
-  return Events.findAll().then(events => res.json(events));
+  return Events.findAll()
+    .then(events => res.json(events))
+    .catch(next);
 });
 
 router.post('/', (req, res, next) => {
-  console.log('post req body: ', req.body);
-  Events.create(req.body).then(created => res.json(created));
+  Events.create(req.body)
+    .then(created => res.json(created))
+    .catch(next);
 });
 
 router.put('/:id', (req, res, next) => {
-  Events.findById(req.params.id)
-  .then(found => {
-    return found.update(req.body);
-  })
-  .then(_ => {
-    return Events.findAll({
-      where: {
-        month: req.body.month
-      }
-    });
-  })
-  .then(events => {
-    res.json(events);
-  });
+  Events.update(req.body,
+    { where:
+      { id: req.params.id },
+      returning: true
+    })
+    .then(_ => {
+      return Events.findAll({
+        where: {
+          month: req.body.month
+        }
+      });
+    })
+    .then(events => {
+      res.json(events);
+    })
+    .catch(next);
 });
 
 router.delete('/:id', (req, res, next) => {
-  Events.destroy({ where: {
-    id: req.params.id
-  }})
-  .then(deleted => {
-    return Events.findAll();
+  Events.destroy({
+    where: {
+      id: req.params.id
+    }
   })
-  .then(events => res.json(events));
+    .then(deleted => {
+      return Events.findAll();
+    })
+    .then(events => res.json(events))
+    .catch(next);
 });

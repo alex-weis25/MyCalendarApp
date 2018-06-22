@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import {
   newTimes,
@@ -62,6 +61,7 @@ class AddEvent extends Component {
     this.setState({ [name]: value });
   };
 
+  /* Form is long, refactoring a possibility */
   render() {
     const daySelect = buildWeek(this.props.Calendar.selected);
     const today = +this.props.Calendar.selected;
@@ -130,7 +130,7 @@ class AddEvent extends Component {
                   })}
               </select>
             </label>
-            <button className="edit-event-submit-btn">Submit</button>
+            <button className="submit-event-btn">Submit</button>
           </form>
           <div className="close-btn-wrapper">
             <div className="Close-btn-top">

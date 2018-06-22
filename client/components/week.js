@@ -50,8 +50,6 @@ class Week extends Component {
     });
   };
 
-  /* if start === and end < */
-
   render() {
     const days = this.state.days;
     const weekIdx = this.state.currentWeek;

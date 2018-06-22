@@ -200,6 +200,12 @@ body {
   margin: 4px 0px 8px 0px;
 }
 
+.submit-event-btn {
+  width: 30%;
+  height: 100px;
+  align-self: center;
+}
+
 .Edit-event-btn {
   width: 180px;
   height: 5vh;

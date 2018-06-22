@@ -37,7 +37,6 @@ class EditEvent extends Component {
     } = this.state;
     const monthDay = +this.props.Calendar.selected;
     const updateEvent = this.props.updateEvent;
-
     const month = this.props.month;
     /* verification and conversions */
     const newStart = convertTime(month, startDay, startTime);
@@ -74,6 +73,7 @@ class EditEvent extends Component {
     this.setState({ [name]: value });
   };
 
+  /* Form is long, refactoring a possibility */
   render() {
     const events = this.props.events;
     const daySelect = buildWeek(this.props.Calendar.selected);
@@ -164,7 +164,7 @@ class EditEvent extends Component {
                 </select>
               </label>
             </label>
-            <button className="edit-event-submit-btn">Submit</button>
+            <button className="submit-event-btn">Submit</button>
           </form>
           <div className="close-btn-wrapper">
             <div className="Close-btn-top">

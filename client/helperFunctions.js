@@ -37,6 +37,7 @@ export const convertDate = (month, val) => {
   return monthsReverse[monthVal];
 };
 
+/* Find correct parent div for onClick event handler */
 export const selectDay = () => {
   const lastClicked = document.getElementsByClassName('selected')[0];
   /* remove previous highlight */
@@ -86,7 +87,7 @@ export const newTimes = times.map((val, idx) => {
   return time;
 });
 
-/* convert time to sequelize value /* new Date(2018, 5, 1, 9, 30) */
+/* convert time to sequelize value */
 export const convertTime = (month, day, time) => {
   const monthDate = months[month];
   const submitDate = new Date(
@@ -147,8 +148,7 @@ export const setWeek = val => {
   }
 };
 
-/* Form varification */
-
+/* Form validation */
 export const verifyInputs = (name, start, end) => {
   if (!start || !end || start === 'Select Start' || end === 'selectTime' || !name || name === ' '){
     return false;

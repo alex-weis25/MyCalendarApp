@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { EditEvent, AddEvent, DeleteEvent, SingleEvent } from './index';
+import { EditEvent, AddEvent, DeleteEvent } from './index';
 
 class PopUp extends Component {
   constructor(props) {

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { Day, SecondaryHeader } from './index';
-
-import { convertDate } from '../helperFunctions';
-
+import { Day } from './index';
 
 class Month extends Component {
   constructor(props) {
