@@ -73,17 +73,3 @@ export default connect(
   mapState,
   mapDispatch
 )(Day);
-
-/*
-<div className="toggle-btn">
-          {this.state.active ? (
-            <PopUp
-              closePopUp={this.togglePopUp}
-              events={events}
-              month={this.props.month}
-            />
-          ) : (
-            ''
-          )}
-        </div>
-*/

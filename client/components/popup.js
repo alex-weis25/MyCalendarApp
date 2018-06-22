@@ -61,7 +61,6 @@ class PopUp extends Component {
 
   render() {
     const events = this.props.events;
-
     return (
       <div className="popup">
         <div className="popup_inner">

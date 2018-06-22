@@ -48,11 +48,9 @@ class Week extends Component {
       currentWeek: week,
       month
     });
-    console.log('state on week: ', this.state, events, week)
   };
 
   render() {
-    console.log('events on week: ', this.state.events);
     const days = this.state.days;
     const weekIdx = this.state.currentWeek;
     const events = this.state.events;

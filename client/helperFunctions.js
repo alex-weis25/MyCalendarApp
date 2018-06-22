@@ -1,5 +1,3 @@
-import React from 'react';
-import Popup from 'reactjs-popup';
 
 // Helper's helpers
 const months = {
@@ -158,6 +156,7 @@ export const checkTimes = (start, end) => {
 
 /* increments days in week view, checks for month change */
 export const setDay = (val, change) => {
+  console.log('entry values: ', val, change);
   let newDate = val + change;
   let daySelected;
   let monthChange;
