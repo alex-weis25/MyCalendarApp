@@ -172,7 +172,7 @@ export const setDay = (val, change) => {
     monthChange = 0;
   } else if (newDate <= 0) {
     newDate -= 28;
-    monthChange = Math.floor(newDate / 28);
+    monthChange = Math.ceil(newDate / 28);
   } else {
     monthChange = Math.floor(newDate / 28);
   }
