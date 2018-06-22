@@ -36,7 +36,7 @@ router.delete('/:id', (req, res, next) => {
       id: req.params.id
     }
   })
-    .then(deleted => {
+    .then(_ => {
       return Events.findAll();
     })
     .then(events => res.json(events))
