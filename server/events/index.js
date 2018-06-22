@@ -3,16 +3,6 @@ const router = require('express').Router();
 const Events = require('../db/models/events');
 module.exports = router;
 
-router.get('/months/:month', (req, res, next) => {
-  return Events.findAll({
-    where: {
-      month: req.params.month
-    }
-  }).then(events => {
-    res.json(events);
-  });
-});
-
 router.get('/all', (req, res, next) => {
   return Events.findAll()
     .then(events => res.json(events))
@@ -32,11 +22,7 @@ router.put('/:id', (req, res, next) => {
       returning: true
     })
     .then(_ => {
-      return Events.findAll({
-        where: {
-          month: req.body.month
-        }
-      });
+      return Events.findAll();
     })
     .then(events => {
       res.json(events);
