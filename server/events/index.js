@@ -18,6 +18,7 @@ router.get('/all', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+  console.log('post req body: ', req.body);
   Events.create(req.body).then(created => res.json(created));
 });
 

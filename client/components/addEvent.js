@@ -6,6 +6,7 @@ import {
   convertTime,
   setWeek,
   checkTimes,
+  buildWeek,
   verifyInputs
 } from '../helperFunctions.js';
 import { createEvent } from '../store/calendar.js';
@@ -19,6 +20,7 @@ class AddEvent extends Component {
       description: '',
       startTime: '',
       endTime: '',
+      endDay: '',
       verified: true,
       correctTimes: true
     };
@@ -26,13 +28,13 @@ class AddEvent extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { eventName, description, startTime, endTime } = this.state;
+    const { eventName, description, startTime, endTime, endDay } = this.state;
     const month = this.props.month;
-    const createEvent = this.props.createEvent;
     const monthDay = +this.props.Calendar.selected;
+    const createEvent = this.props.createEvent;
     /* verification and conversions */
     const newStart = convertTime(month, monthDay, startTime);
-    const newEnd = convertTime(month, monthDay, endTime);
+    const newEnd = convertTime(month, endDay, endTime);
     const newWeek = setWeek(monthDay);
     const verified = verifyInputs(eventName, startTime, endTime);
     const correctTimes = checkTimes(newStart, newEnd);
@@ -41,6 +43,7 @@ class AddEvent extends Component {
       description,
       month,
       monthDay,
+      endDay,
       week: newWeek,
       startTime: newStart,
       endTime: newEnd
@@ -60,6 +63,8 @@ class AddEvent extends Component {
   };
 
   render() {
+    const daySelect = buildWeek(this.props.Calendar.selected);
+    const today = +this.props.Calendar.selected;
     return (
       <div className="popup">
         <div className="popup_inner">
@@ -106,6 +111,22 @@ class AddEvent extends Component {
                 {newTimes &&
                   newTimes.map(time => {
                     return <option value={time}>{time}</option>;
+                  })}
+              </select>
+            </label>
+            <label>
+              End Day:
+              <select
+                value={this.state.endDay}
+                onChange={this.handleChange}
+                name="endDay"
+              >
+                <option value="endDay">Select Day</option>
+                {daySelect &&
+                  daySelect.map(time => {
+                    if (time >= today) {
+                      return <option value={time}>{time}</option>;
+                    }
                   })}
               </select>
             </label>

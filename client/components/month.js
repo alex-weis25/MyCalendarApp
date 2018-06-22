@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { Day, SecondaryHeader } from './index';
 
@@ -54,14 +54,17 @@ class Month extends Component {
           {days.length && //deleted events.length &&
             days.map((day, idx) => {
               const todaysEvents = [];
+              const dayIdx = idx + 1
               events.map(event => {
-                if (idx + 1 === event.monthDay) {
+                let start = moment(event.startTime).format('DD');
+                let end = moment(event.endTime).format('DD');
+                if (dayIdx >= +start && dayIdx <= +end) {
                   todaysEvents.push(event);
                 }
               });
               return (
                 <Day
-                  dayIdx={idx + 1}
+                  dayIdx={dayIdx}
                   events={todaysEvents}
                   month={this.state.currentMonth}
                 />

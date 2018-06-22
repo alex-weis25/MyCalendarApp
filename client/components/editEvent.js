@@ -5,6 +5,7 @@ import {
   convertTime,
   setWeek,
   checkTimes,
+  buildWeek,
   verifyInputs
 } from '../helperFunctions.js';
 import { updateEvent } from '../store/calendar';
@@ -18,6 +19,7 @@ class EditEvent extends Component {
       description: '',
       startTime: '',
       endTime: '',
+      endDay: '',
       verified: true,
       correctTimes: true
     };
@@ -25,14 +27,21 @@ class EditEvent extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { eventName, description, startTime, endTime } = this.state;
+    const {
+      eventName,
+      description,
+      startTime,
+      endTime,
+      endDay,
+      startDay
+    } = this.state;
     const monthDay = +this.props.Calendar.selected;
     const updateEvent = this.props.updateEvent;
 
     const month = this.props.month;
     /* verification and conversions */
-    const newStart = convertTime(month, monthDay, startTime);
-    const newEnd = convertTime(month, monthDay, endTime);
+    const newStart = convertTime(month, startDay, startTime);
+    const newEnd = convertTime(month, endDay, endTime);
     const newWeek = setWeek(monthDay);
     const verified = verifyInputs(eventName, startTime, endTime);
     const correctTimes = checkTimes(newStart, newEnd);
@@ -40,7 +49,8 @@ class EditEvent extends Component {
       eventName,
       description,
       month,
-      monthDay,
+      monthDay: startDay,
+      endDay,
       week: newWeek,
       startTime: newStart,
       endTime: newEnd
@@ -66,6 +76,7 @@ class EditEvent extends Component {
 
   render() {
     const events = this.props.events;
+    const daySelect = buildWeek(this.props.Calendar.selected);
     return (
       <div className="popup">
         <div className="popup_inner">
@@ -112,6 +123,20 @@ class EditEvent extends Component {
               </select>
             </label>
             <label>
+              Start Day:
+              <select
+                value={this.state.startDay}
+                onChange={this.handleChange}
+                name="startDay"
+              >
+                <option value="startDay">Select Day</option>
+                {daySelect &&
+                  daySelect.map(time => {
+                    return <option value={time}>{time}</option>;
+                  })}
+              </select>
+            </label>
+            <label>
               End Time:
               <select
                 value={this.state.endTime}
@@ -124,6 +149,20 @@ class EditEvent extends Component {
                     return <option value={time}>{time}</option>;
                   })}
               </select>
+              <label>
+                End Day:
+                <select
+                  value={this.state.endDay}
+                  onChange={this.handleChange}
+                  name="endDay"
+                >
+                  <option value="endDay">Select Day</option>
+                  {daySelect &&
+                    daySelect.map(time => {
+                      return <option value={time}>{time}</option>;
+                    })}
+                </select>
+              </label>
             </label>
             <button className="edit-event-submit-btn">Submit</button>
           </form>

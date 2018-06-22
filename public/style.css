@@ -165,10 +165,10 @@ body {
 }
 .popup_inner {
   position: absolute;
-  left: 25%;
-  right: 25%;
-  top: 25%;
-  bottom: 25%;
+  left: 20%;
+  right: 20%;
+  top: 20%;
+  bottom: 20%;
   margin: auto;
   padding: 10px;
   background: #fff;
@@ -225,6 +225,8 @@ body {
 }
 
 .Close-btn-top {
+  margin-top: 140px;
+  align-self: center;
 }
 
 .Close-btn-bottom {

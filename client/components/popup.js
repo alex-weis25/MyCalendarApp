@@ -98,7 +98,7 @@ class PopUp extends Component {
           </div>
           <div>{this.selectComponents()}</div>
           <div className="close-btn-wrapper">
-            <div className="Close-btn-top">
+            <div className="Close-btn-top-popup">
               {events &&
                 events.map(event => {
                   return (

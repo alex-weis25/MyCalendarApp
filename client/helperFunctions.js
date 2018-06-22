@@ -72,9 +72,9 @@ export const selectDay = () => {
 };
 
 /* Build times */
-const times = new Array(25).fill(0);
+const times = new Array(48).fill(0);
 export const newTimes = times.map((val, idx) => {
-  let start = 8;
+  let start = 0;
   let hour = Math.floor(idx / 2);
   let min;
   if (idx % 2 === 0) {
@@ -99,6 +99,20 @@ export const convertTime = (month, day, time) => {
   return submitDate;
 };
 
+/* build week */
+export const buildWeek = day => {
+  if (0 < day && day <= 7){
+    return [1, 2, 3, 4, 5, 6, 7];
+  } else if (7 < day && day <= 14){
+    return [8, 9, 10, 11, 12, 13, 14];
+  } else if (14 < day && day <= 21){
+    return [15, 16, 17, 18, 19, 20, 21];
+  } else {
+    return [22, 23, 24, 25, 26, 27, 28];
+  }
+};
+
+
 /* Sort events by time */
 export const sortEvents = array => {
   let updatedOrder = [];
@@ -110,7 +124,6 @@ export const sortEvents = array => {
     array.forEach(event => {
       for (var i = 0; i < array.length; i++) {
         if (!updatedOrder[i] || event.startTime <= updatedOrder[i].startTime) {
-          // console.log('switching order')
           updatedOrder.splice(i, 0, event);
           break;
         }
@@ -138,7 +151,6 @@ export const setWeek = val => {
 
 export const verifyInputs = (name, start, end) => {
   if (!start || !end || start === 'Select Start' || end === 'selectTime' || !name || name === ' '){
-    console.log('hit false line');
     return false;
   } else {
     return true;
@@ -156,7 +168,6 @@ export const checkTimes = (start, end) => {
 
 /* increments days in week view, checks for month change */
 export const setDay = (val, change) => {
-  console.log('entry values: ', val, change);
   let newDate = val + change;
   let daySelected;
   let monthChange;
@@ -176,7 +187,6 @@ export const setDay = (val, change) => {
   } else {
     monthChange = Math.floor(newDate / 28);
   }
-  console.log('exit values', monthChange, daySelected);
   return [monthChange, daySelected];
 };
 

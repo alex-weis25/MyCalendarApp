@@ -24,7 +24,6 @@ class SecondaryHeader extends Component {
     } else if (view === 'week') {
       let newWeek = changeWeek(selected, month, value);
       if (newWeek[0] !== 0) this.props.setMonth(newWeek[0]);
-      console.log('changeWeek', newWeek);
       this.props.setSelected(newWeek[1]);
     }
   };
