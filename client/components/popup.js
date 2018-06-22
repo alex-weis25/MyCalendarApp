@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import moment from 'moment';
 import { connect } from 'react-redux';
-import { EditEvent, AddEvent, DeleteEvent } from './index';
+import { EditEvent, AddEvent, DeleteEvent, SingleEvent } from './index';
 
 class PopUp extends Component {
   constructor(props) {
@@ -60,7 +60,8 @@ class PopUp extends Component {
   };
 
   render() {
-    const length = this.props.events.length;
+    const events = this.props.events;
+
     return (
       <div className="popup">
         <div className="popup_inner">
@@ -73,7 +74,7 @@ class PopUp extends Component {
             >
               Add new event
             </button>
-            {length ? (
+            {events && events.length ? (
               <button
                 className="Edit-event-btn"
                 onClick={this.onClick}
@@ -84,7 +85,7 @@ class PopUp extends Component {
             ) : (
               ''
             )}
-            {length ? (
+            {events && events.length ? (
               <button
                 className="Edit-event-btn"
                 onClick={this.onClick}
@@ -98,12 +99,27 @@ class PopUp extends Component {
           </div>
           <div>{this.selectComponents()}</div>
           <div className="close-btn-wrapper">
-            <button
-              className="edit-event-submit-btn"
-              onClick={this.props.closePopUp}
-            >
-              Close
-            </button>
+            <div className="Close-btn-top">
+              {events &&
+                events.map(event => {
+                  return (
+                    <div className="Extra-event-wrapper">
+                      <div className="Extra-event-left">
+                        {moment(event.startTime).format('h:mm A')}
+                      </div>
+                      <div className="Extra-event-right">{event.eventName}</div>
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="Close-btn-bottom">
+              <button
+                className="edit-event-submit-btn"
+                onClick={this.props.closePopUp}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>

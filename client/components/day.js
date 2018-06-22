@@ -22,6 +22,7 @@ class Day extends Component {
 
   render() {
     let events = sortEvents(this.props.events);
+    let condensed = events.slice(0, 2);
     const dayIdx = this.props.dayIdx;
     const currentDay = +this.props.Calendar.selected;
     return (
@@ -30,13 +31,14 @@ class Day extends Component {
           <div>{dayIdx}</div>
         </div>
         <div className="Day-content">
-          {events
-            ? events.map(event => {
+          {condensed
+            ? condensed.map(event => {
                 if (event.eventName) {
                   return <SingleEvent key={event.monthDay} event={event} />;
                 }
               })
             : ''}
+          {events && events.length > 2 ? <div id="More-events" >More events</div> : ''}
         </div>
         <div />
         <div className="Edit-btn-wrapper">

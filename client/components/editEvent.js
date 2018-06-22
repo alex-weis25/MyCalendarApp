@@ -128,26 +128,30 @@ class EditEvent extends Component {
             <button className="edit-event-submit-btn">Submit</button>
           </form>
           <div className="close-btn-wrapper">
-            {!this.state.verified ? (
-              <div id="Submission-error">
-                You must enter a name, start and end time
-              </div>
-            ) : (
-              ''
-            )}
-            {this.state.verified && !this.state.correctTimes ? (
-              <div id="Submission-error">
-                Your end time must be after your start time
-              </div>
-            ) : (
-              ''
-            )}
-            <button
-              className="edit-event-submit-btn"
-              onClick={this.props.close}
-            >
-              Close
-            </button>
+            <div className="Close-btn-top">
+              {!this.state.verified ? (
+                <div id="Submission-error">
+                  You must enter a name, start and end time
+                </div>
+              ) : (
+                ''
+              )}
+              {this.state.verified && !this.state.correctTimes ? (
+                <div id="Submission-error">
+                  Your end time must be after your start time
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className="Close-btn-bottom">
+              <button
+                className="edit-event-submit-btn"
+                onClick={this.props.close}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>

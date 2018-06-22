@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import { removeEvent } from "../store/calendar";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { removeEvent } from '../store/calendar';
 
 class DeleteEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: "",
-      eventName: ""
+      events: '',
+      eventName: ''
     };
   }
 
@@ -59,12 +59,15 @@ class DeleteEvent extends Component {
             <button className="edit-event-submit-btn">Submit</button>
           </form>
           <div className="close-btn-wrapper">
-            <button
-              className="edit-event-submit-btn"
-              onClick={this.props.close}
-            >
-              Close
-            </button>
+            <div className="Close-btn-top" />
+            <div className="Close-btn-bottom">
+              <button
+                className="edit-event-submit-btn"
+                onClick={this.props.close}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
