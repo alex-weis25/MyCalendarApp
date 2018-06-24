@@ -8,9 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "nodemon server",
-    "start": "nodemon server",
-    "start-dev": "webpack -w & nodemon server --watch",
+    "start-server": "nodemon CalendarBackEnd",
+    "start": "nodemon CalendarBackEnd",
+    "start-dev": "webpack -w & nodemon CalendarBackEnd --watch",
     "build": "webpack",
     "seed": "node seed.js"
   },

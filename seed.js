@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { db, Events } = require('./server/db/models');
+const { db, Events } = require('./CalendarBackEnd/db/models');
 
 const eventArray = [
   {

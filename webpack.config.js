@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', './client/index.js'],
+  entry: ['babel-polyfill', './CalendarFrontEnd/index.js'],
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js'

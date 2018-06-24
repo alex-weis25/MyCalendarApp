@@ -50,14 +50,12 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div id="App-main">
         <div id="App-Title">
           <SecondaryHeader setView={this.setView} view={this.state.view} />
         </div>
         {this.selectComponents()}
-
       </div>
     );
   }
