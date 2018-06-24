@@ -54,13 +54,33 @@ const eventArray = [
   },
   {
     eventName: 'Fourth of July',
+    description: '',
+    month: 'July',
+    monthDay: 4,
+    endDay: 4,
+    week: 1,
+    startTime: new Date(2018, 6, 4, 0, 0),
+    endTime: new Date(2018, 6, 4, 23, 30)
+  },
+  {
+    eventName: 'BBQ',
+    description: '',
+    month: 'July',
+    monthDay: 4,
+    endDay: 4,
+    week: 1,
+    startTime: new Date(2018, 6, 4, 12, 30),
+    endTime: new Date(2018, 6, 4, 17, 30)
+  },
+  {
+    eventName: 'Fireworks',
     description: 'Fireworks east side',
     month: 'July',
     monthDay: 4,
     endDay: 4,
     week: 1,
-    startTime: new Date(2018, 6, 4, 18, 30),
-    endTime: new Date(2018, 6, 4, 20, 30)
+    startTime: new Date(2018, 6, 4, 21, 30),
+    endTime: new Date(2018, 6, 4, 22, 30)
   },
   {
     eventName: 'Flight to Chicago',
@@ -73,6 +93,16 @@ const eventArray = [
     endTime: new Date(2018, 6, 18, 14, 30)
   },
   {
+    eventName: 'Work from home',
+    description: '',
+    month: 'July',
+    monthDay: 20,
+    endDay: 20,
+    week: 3,
+    startTime: new Date(2018, 6, 20, 12, 30),
+    endTime: new Date(2018, 6, 20, 14, 30)
+  },
+  {
     eventName: 'Alex Birthday',
     description: '28 years old',
     month: 'August',
@@ -81,6 +111,26 @@ const eventArray = [
     week: 4,
     startTime: new Date(2018, 7, 25, 8, 30),
     endTime: new Date(2018, 7, 25, 20, 30)
+  },
+  {
+    eventName: "New Year's Day",
+    description: '',
+    month: 'January',
+    monthDay: 1,
+    endDay: 1,
+    week: 1,
+    startTime: new Date(2018, 0, 1, 0, 0),
+    endTime: new Date(2018, 0, 1, 23, 30)
+  },
+  {
+    eventName: "New Year's Eve",
+    description: '',
+    month: 'December',
+    monthDay: 28,
+    endDay: 28,
+    week: 4,
+    startTime: new Date(2018, 11, 28, 0, 0),
+    endTime: new Date(2018, 11, 28, 23, 30)
   },
   {
     eventName: 'Halloween',
